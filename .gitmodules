@@ -1,0 +1,12 @@
+[submodule "lib/ds-test"]
+	path = lib/ds-test
+	url = https://github.com/dapphub/ds-test
+[submodule "lib/uniswap-v3-core"]
+	path = lib/uniswap-v3-core
+	url = https://github.com/Uniswap/uniswap-v3-core
+[submodule "lib/openzeppelin-contracts"]
+	path = lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "lib/olympus-contracts"]
+	path = lib/olympus-contracts
+	url = https://github.com/OlympusDAO/olympus-contracts
