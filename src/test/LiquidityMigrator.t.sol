@@ -17,7 +17,7 @@ contract LiquidityMigratorTest is DSTest {
     address gUniRouter = 0x513E0a261af2D33B46F98b81FED547608fA2a03d;
 
     address gUniPool = 0x61a0C8d4945A61bF26c13e07c30AF1f1ca67b473;
-    address dexLpAddress = 0xB612c37688861f1f90761DC7F382C2aF3a50Cc39;
+    address ohm_fraxLpAddress = 0xB612c37688861f1f90761DC7F382C2aF3a50Cc39;
 
     address olympusGovernor = 0x245cc372C84B3645Bf0Ffe6538620B04a217988B;
     uint256 amount = 24531853941907362845;
@@ -34,7 +34,7 @@ contract LiquidityMigratorTest is DSTest {
             dexRouter,
             gUniRouter,
             gUniPool,
-            dexLpAddress,
+            ohm_fraxLpAddress,
             amount
         );
     }
@@ -46,7 +46,7 @@ contract LiquidityMigratorTest is DSTest {
             dexRouter,
             gUniRouter,
             gUniPool,
-            dexLpAddress,
+            ohm_fraxLpAddress,
             amount
         );
     }
@@ -61,7 +61,7 @@ contract LiquidityMigratorTest is DSTest {
             dexRouter,
             gUniRouter,
             gUniPool,
-            dexLpAddress,
+            ohm_fraxLpAddress,
             64531853941907362845
         );
     }
@@ -73,7 +73,7 @@ contract LiquidityMigratorTest is DSTest {
             dexRouter,
             gUniRouter,
             gUniPool,
-            dexLpAddress,
+            ohm_fraxLpAddress,
             amount
         );
 
@@ -82,7 +82,7 @@ contract LiquidityMigratorTest is DSTest {
             ,
             uint256 contractToken0BalAfterAddingLiquidity_,
             uint256 contractToken1BalAfterAddingLiquidity_
-        ) = liquidityMigrator.getTokenInfo(dexLpAddress);
+        ) = liquidityMigrator.getTokenInfo(ohm_fraxLpAddress);
 
         (
             uint256 contractV2lpBalanceBeforeRemovingLiquidity,
@@ -116,12 +116,12 @@ contract LiquidityMigratorTest is DSTest {
             dexRouter,
             gUniRouter,
             gUniPool,
-            dexLpAddress,
+            ohm_fraxLpAddress,
             amount
         );
 
         (address token0, address token1, , ) = liquidityMigrator.getTokenInfo(
-            dexLpAddress
+            ohm_fraxLpAddress
         );
 
         balanceChecker(token0);

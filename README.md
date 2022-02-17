@@ -28,4 +28,4 @@ cargo install --git https://github.com/gakonst/foundry --bin forge
 
 Run `forge build` to compile contracts
 
-Run `forge test -vvvv -f https://mainnet.infura.io/v3/your_infura_id ` to run test via forked mainnet
+Run `forge test -f https://mainnet.infura.io/v3/your_infura_id ` to run test via forked mainnet
