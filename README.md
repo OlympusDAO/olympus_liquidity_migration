@@ -17,3 +17,15 @@ In summary the steps involved to achieved this are;
 As fees accrue, move fees from multisig to the treasury.
 
 The community vote (OIP-26) to move the OHM-FRAX pool to Uniswap v3 passed on Sep 25. Hence we'd be migrating OHM-FRAX pool on Uniswap V2 first. You can get more insight [here](https://docs.google.com/document/d/1fVlHsmanoXdXZhJofToDTRGJDJE-2ASb8NY2iM2otUg/)
+
+# To Test
+
+Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Install Foundry
+cargo install --git https://github.com/gakonst/foundry --bin forge
+
+Run `forge build` to compile contracts
+
+Run `forge test -vvvv -f https://mainnet.infura.io/v3/your_infura_id ` to run test via forked mainnet
