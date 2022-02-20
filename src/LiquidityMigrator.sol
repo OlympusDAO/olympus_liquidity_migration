@@ -6,10 +6,13 @@ import "./interface/IUniswapV2Router02.sol";
 import "./interface/IUniswapV2Pair.sol";
 import "./interface/IGUniRouter.sol";
 import "openzeppelin-contracts/contracts/access/Ownable.sol";
+import "openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /// @notice This contract handles migrating lps from uniswap v2 and sushiswap to uniswap v3 via gelato
 ///         to make use of the contract ensure a pool has been created on uniswap v3 and gelato
 contract LiquidityMigrator is Ownable {
+    using SafeERC20 for IERC20;
+
     struct TxDetails {
         uint256 contractV2lpBalanceBeforeRemovingLiquidity;
         uint256 contractV2lpBalanceAfterRemovingLiquidity;
@@ -109,7 +112,7 @@ contract LiquidityMigrator is Ownable {
         );
     }
 
-    /// @notice Removes liquidity from sushiswap/uniswap
+    /// @notice Adds liquidity to guni pool
     /// @param router_ guni router address
     /// @param pool_ guni pool address
     /// @param amount0Max_ max amount of token 0 to be added as liquidity
@@ -168,6 +171,6 @@ contract LiquidityMigrator is Ownable {
         uint256 tokenBal = IERC20(addr_).balanceOf(address(this));
         require(tokenBal > 0, "no funds to withdraw");
 
-        IERC20(addr_).transfer(msg.sender, tokenBal);
+        IERC20(addr_).safeTransfer(msg.sender, tokenBal);
     }
 }
