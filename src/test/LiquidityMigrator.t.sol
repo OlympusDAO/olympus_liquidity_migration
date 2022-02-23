@@ -35,7 +35,8 @@ contract LiquidityMigratorTest is DSTest {
             gUniRouter,
             gUniPool,
             ohm_fraxLpAddress,
-            amount
+            amount,
+            999
         );
     }
 
@@ -47,7 +48,8 @@ contract LiquidityMigratorTest is DSTest {
             gUniRouter,
             gUniPool,
             ohm_fraxLpAddress,
-            amount
+            amount,
+            999
         );
     }
 
@@ -62,7 +64,8 @@ contract LiquidityMigratorTest is DSTest {
             gUniRouter,
             gUniPool,
             ohm_fraxLpAddress,
-            64531853941907362845
+            64531853941907362845,
+            999
         );
     }
 
@@ -74,7 +77,8 @@ contract LiquidityMigratorTest is DSTest {
             gUniRouter,
             gUniPool,
             ohm_fraxLpAddress,
-            amount
+            amount,
+            999
         );
 
         (
@@ -90,7 +94,8 @@ contract LiquidityMigratorTest is DSTest {
             uint256 contractToken0BalBeforeAddingLiquidity_,
             uint256 contractToken1BalBeforeAddingLiquidity_,
             uint256 expectedToken0ToBeAddedOnGuni,
-            uint256 expectedToken1ToBeAddedOnGuni
+            uint256 expectedToken1ToBeAddedOnGuni,
+            address lps
         ) = liquidityMigrator.transactions(liquidityMigrator.txCount() - 1);
 
         assertEq(amount, contractV2lpBalanceBeforeRemovingLiquidity);
@@ -117,7 +122,8 @@ contract LiquidityMigratorTest is DSTest {
             gUniRouter,
             gUniPool,
             ohm_fraxLpAddress,
-            amount
+            amount,
+            950
         );
 
         (address token0, address token1, , ) = liquidityMigrator.getTokenInfo(

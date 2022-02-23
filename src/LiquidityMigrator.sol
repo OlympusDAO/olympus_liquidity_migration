@@ -20,6 +20,7 @@ contract LiquidityMigrator is Ownable {
         uint256 contractToken1Bal;
         uint256 expectedToken0ToBeAddedOnGuni;
         uint256 expectedToken1ToBeAddedOnGuni;
+        address lps;
     }
 
     uint256 public txCount;
@@ -34,12 +35,14 @@ contract LiquidityMigrator is Ownable {
     /// @param gUniPool_ gelato pool address for a pair on uniswap v3
     /// @param dexLpAddress_ v2 lp address of either uniswap or sushiswap
     /// @param amount_ lp amount to get from treasury and amount of liquidity to remove
+    /// @param percentage_ minimum percentage when using the addLiquidityGuni function....i.e 95% will be 950
     function executeTx(
         address dexRouter_,
         address gUniRouter_,
         address gUniPool_,
         address dexLpAddress_,
-        uint256 amount_
+        uint256 amount_,
+        uint256 percentage_
     ) external onlyOwner {
         ITreasury(treasury).manage(dexLpAddress_, amount_);
         uint256 amount = IUniswapV2Pair(dexLpAddress_).balanceOf(address(this));
@@ -63,8 +66,8 @@ contract LiquidityMigrator is Ownable {
             gUniPool_,
             contractToken0Bal_,
             contractToken1Bal_,
-            (amount0 * 95) / 100,
-            (amount1 * 95) / 100
+            (amount0 * percentage_) / 1000,
+            (amount1 * percentage_) / 1000
         );
 
         transactions[txCount] = TxDetails({
@@ -73,7 +76,8 @@ contract LiquidityMigrator is Ownable {
             contractToken0Bal: contractToken0Bal_,
             contractToken1Bal: contractToken1Bal_,
             expectedToken0ToBeAddedOnGuni: amount0,
-            expectedToken1ToBeAddedOnGuni: amount1
+            expectedToken1ToBeAddedOnGuni: amount1,
+            lps: dexLpAddress_
         });
 
         txCount++;
