@@ -18,6 +18,17 @@ As fees accrue, move fees from multisig to the treasury.
 
 The community vote (OIP-26) to move the OHM-FRAX pool to Uniswap v3 passed on Sep 25. Hence we'd be migrating OHM-FRAX pool on Uniswap V2 first. You can get more insight [here](https://docs.google.com/document/d/1fVlHsmanoXdXZhJofToDTRGJDJE-2ASb8NY2iM2otUg/)
 
+# Parameter
+
+```
+dexRouter_ router address; can be uniswap or sushiswap
+gUniRouter_ gelato router address
+gUniPool_ gelato pool address for a pair on uniswap v3
+dexLpAddress_ v2 lp address of either uniswap or sushiswap
+amount_ lp amount to get from treasury and amount of liquidity to remove
+percentage_ minimum percentage when using the addLiquidityGuni function....i.e 95% will be 950
+```
+
 # To Test
 
 Install Rust
