@@ -86,7 +86,10 @@ contract LiquidityMigratorTest is DSTest {
             ,
             uint256 contractToken0BalAfterAddingLiquidity_,
             uint256 contractToken1BalAfterAddingLiquidity_
-        ) = liquidityMigrator.getTokenInfo(ohm_fraxLpAddress);
+        ) = liquidityMigrator.getTokenInfo(
+                ohm_fraxLpAddress,
+                address(liquidityMigrator)
+            );
 
         (
             uint256 contractV2lpBalanceBeforeRemovingLiquidity,
@@ -127,6 +130,7 @@ contract LiquidityMigratorTest is DSTest {
         );
 
         (address token0, address token1, , ) = liquidityMigrator.getTokenInfo(
+            ohm_fraxLpAddress,
             ohm_fraxLpAddress
         );
 

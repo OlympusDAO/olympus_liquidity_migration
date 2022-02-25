@@ -56,7 +56,7 @@ contract LiquidityMigrator is Ownable {
             ,
             uint256 contractToken0Bal_,
             uint256 contractToken1Bal_
-        ) = getTokenInfo(dexLpAddress_);
+        ) = getTokenInfo(dexLpAddress_, address(this));
 
         (uint256 amount0, uint256 amount1, ) = IGUniPool(gUniPool_)
             .getMintAmounts(contractToken0Bal_, contractToken1Bal_);
@@ -97,7 +97,7 @@ contract LiquidityMigrator is Ownable {
             address token1,
             uint256 pairBalanaceInTokenA,
             uint256 pairBalanaceInTokenB
-        ) = getTokenInfo(pairAddr_);
+        ) = getTokenInfo(pairAddr_, pairAddr_);
 
         uint256 totalSupply = IUniswapV2Pair(pairAddr_).totalSupply();
         uint256 amount1Min = (pairBalanaceInTokenA * amount_) / totalSupply;
@@ -150,7 +150,7 @@ contract LiquidityMigrator is Ownable {
     /// @notice Returns token 0, token 1, contract balance of token 0, contract balance of token 1
     /// @param lp_ lp address
     /// @return address, address, uint, uint
-    function getTokenInfo(address lp_)
+    function getTokenInfo(address lp_, address addr_)
         public
         view
         returns (
@@ -163,8 +163,8 @@ contract LiquidityMigrator is Ownable {
         address token0 = IUniswapV2Pair(lp_).token0();
         address token1 = IUniswapV2Pair(lp_).token1();
 
-        uint256 token0Bal = IERC20(token0).balanceOf(address(this));
-        uint256 token1Bal = IERC20(token1).balanceOf(address(this));
+        uint256 token0Bal = IERC20(token0).balanceOf(addr_);
+        uint256 token1Bal = IERC20(token1).balanceOf(addr_);
 
         return (token0, token1, token0Bal, token1Bal);
     }
